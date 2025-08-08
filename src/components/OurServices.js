@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 const services = [
   {
@@ -21,9 +21,9 @@ const services = [
   }
 ];
 
-const GenZServices = () => {
+const GenZServices = forwardRef((props, ref) => {
   return (
-    <section className="px-6 sm:px-10 py-16 bg-white">
+    <section ref={ref} className="px-6 sm:px-10 py-16 bg-white">
       <h2 className="text-3xl font-bold text-[#1F1B96] mb-8 text-center">Our Services</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {services.map((service, index) => (
@@ -42,6 +42,6 @@ const GenZServices = () => {
       </div>
     </section>
   );
-};
+});
 
 export default GenZServices;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const Hero = () => {
+const Hero = forwardRef(({ scrollToServices, scrollToWork }, ref) => {
   return (
-    <section className="relative px-6 sm:px-10 py-12 sm:py-16 bg-white text-left overflow-hidden">
+    <section ref={ref} className="relative px-6 sm:px-10 py-12 sm:py-16 bg-white text-left overflow-hidden">
       <div className="max-w-2xl z-10 relative">
         {/* Headline */}
         <h1 className="text-3xl sm:text-5xl font-bold leading-tight text-black">
@@ -20,10 +20,14 @@ const Hero = () => {
           <button
             className="px-6 sm:px-8 py-3 text-white rounded-full hover:opacity-90 text-base sm:text-lg"
             style={{ background: 'linear-gradient(90deg, #1F1B96, #251DFF)' }}
+            onClick={scrollToServices} // Add onClick handler
           >
             Work with us →
           </button>
-          <button className="px-6 sm:px-8 py-3 border border-[#1F1B96] text-[#1F1B96] rounded-full hover:bg-[#1F1B96] hover:text-white text-base sm:text-lg transition">
+          <button 
+            className="px-6 sm:px-8 py-3 border border-[#1F1B96] text-[#1F1B96] rounded-full hover:bg-[#1F1B96] hover:text-white text-base sm:text-lg transition"
+            onClick={scrollToWork} // Add onClick handler
+          >
             Our Work
           </button>
         </div>
@@ -110,6 +114,6 @@ const Hero = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Hero;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 
 const shorts = [
   { id: '_bKBVP5NNqY', title: 'Short Edit 1' }, // Replace 'dQw4w9WgXcQ' with your actual YouTube Short ID
@@ -43,7 +43,7 @@ const Slider = ({ items, isShorts }) => {
                 height={isShorts ? "640" : "360"} // Shorts: Tall for 9:16; Videos: Increased height for larger display
                 style={{ aspectRatio: isShorts ? '9/16' : '16/9' }} // Enforce 9:16 for shorts, 16:9 for videos
                 src={`https://www.youtube.com/embed/${item.id}?autoplay=${index === currentIndex ? '1' : '0'}`} // Autoplay only for current index
-                title={item.title}
+                title={item.title} // Added title for accessibility
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -70,9 +70,9 @@ const Slider = ({ items, isShorts }) => {
   );
 };
 
-const OurWork = () => {
+const OurWork = forwardRef((props, ref) => {
   return (
-    <section className="px-6 sm:px-10 py-16 bg-white">
+    <section ref={ref} className="px-6 sm:px-10 py-16 bg-white">
       <h2 className="text-3xl font-bold text-[#1F1B96] mb-8 text-center">Our Work</h2>
       
       {/* Shorts Section */}
@@ -84,6 +84,6 @@ const OurWork = () => {
       <Slider items={videos} isShorts={false} />
     </section>
   );
-};
+});
 
 export default OurWork;

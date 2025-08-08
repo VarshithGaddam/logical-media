@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from 'react';
 
 // CSS for animating SVG lines
 const animateStyle = `
@@ -99,46 +99,49 @@ const AnimatedGraph = () => (
   </svg>
 );
 
-const DashboardSection = () => (
-  <section className="flex flex-col md:flex-row gap-10 md:gap-16 px-6 sm:px-10 py-16 bg-white">
-    <DashboardCard>
-      {/* Left (Dashboard Graph and Metrics) */}
-      <div className="flex-1">
-        <div className="flex items-center mb-2">
-          <span className="text-[2.5rem] font-bold text-[#F94CCC] leading-none mr-4">03</span>
-          <div className="flex flex-col">
-            <span className="text-[#060101] text-lg font-semibold">Years of Building Brands</span>
+const DashboardSection = forwardRef((props, ref) => {
+  return (
+    <section ref={ref} className="px-6 sm:px-10 py-16 bg-gray-100 text-black">
+      <h2 className="text-3xl font-bold text-[#1F1B96] mb-8 text-center">Explore our work with some brands</h2>
+      <DashboardCard>
+        {/* Left (Dashboard Graph and Metrics) */}
+        <div className="flex-1">
+          <div className="flex items-center mb-2">
+            <span className="text-[2.5rem] font-bold text-[#F94CCC] leading-none mr-4">03</span>
+            <div className="flex flex-col">
+              <span className="text-[#060101] text-lg font-semibold">Years of Building Brands</span>
+            </div>
+          </div>
+          <div className="mt-2 mb-6">
+            <AnimatedGraph />
+          </div>
+          <div className="flex justify-center gap-10 mt-2">
+            {legend.map((item, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center">
+                <div className="flex items-center gap-2">
+                  <span className={`w-4 h-4 rounded-full`} style={{background:item.color}}></span>
+                  <span className="text-base font-medium" style={{color:item.color}}>{item.label}</span>
+                </div>
+                <span className="text-xs text-[#AFAEC5] mt-1">{item.text}</span>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="mt-2 mb-6">
-          <AnimatedGraph />
+        {/* Right (Matter/Content) */}
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="text-black text-xl font-bold mb-2">Our Growth Insights</div>
+          <p className="text-gray-700 text-base mb-4">
+            At Logical Media, we track key metrics to showcase how our services drive real results for brands. This dashboard highlights our performance in video editing, graphic designing, and content strategy.
+          </p>
+          <ul className="list-disc pl-5 text-gray-700 text-base">
+            <li>Over 800 video edits that have boosted client engagement by up to 40%.</li>
+            <li>Gained above 10,000 Followers less than 5 months.</li>
+            <li>Strategies implemented, leading to millions of views and faster brand growth.</li>
+          </ul>
         </div>
-        <div className="flex justify-center gap-10 mt-2">
-          {legend.map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center">
-              <div className="flex items-center gap-2">
-                <span className={`w-4 h-4 rounded-full`} style={{background:item.color}}></span>
-                <span className="text-base font-medium" style={{color:item.color}}>{item.label}</span>
-              </div>
-              <span className="text-xs text-[#AFAEC5] mt-1">{item.text}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      {/* Right (Matter/Content) */}
-      <div className="flex-1 flex flex-col justify-center">
-        <div className="text-black text-xl font-bold mb-2">Our Growth Insights</div>
-        <p className="text-gray-700 text-base mb-4">
-          At Logical Media, we track key metrics to showcase how our services drive real results for brands. This dashboard highlights our performance in video editing, graphic designing, and content strategy.
-        </p>
-        <ul className="list-disc pl-5 text-gray-700 text-base">
-          <li>Over 800 video edits that have boosted client engagement by up to 40%.</li>
-          <li>Gained above 10,000 Followers less than 5 months.</li>
-          <li>Strategies implemented, leading to millions of views and faster brand growth.</li>
-        </ul>
-      </div>
-    </DashboardCard>
-  </section>
-);
+      </DashboardCard>
+    </section>
+  );
+});
 
 export default DashboardSection;
